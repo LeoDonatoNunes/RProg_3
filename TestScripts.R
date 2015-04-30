@@ -1,4 +1,8 @@
 ### Test Scripts for Best
+source("http://d396qusza40orc.cloudfront.net/rprog%2Fscripts%2Fsubmitscript3.R")
+submit()
+pw: Wk38WPYQwp
+
 # Invalid Outcome
 best("AZ", "test")
 best("NM", "test")
@@ -14,7 +18,7 @@ best("BB", "heart attack")
 best("IN", "heart attack")
 best("IL", "heart failure")
 best("MI", "pneumonia")
-
+best("SC", "heart attack")
 best("TX", "heart attack")
 best("TX", "heart failure")
 best("MD", "heart attack")

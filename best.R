@@ -32,7 +32,7 @@ best <- function(state, outcome) {
 
 #####   Setting up variables to be used in look ups
         stcol <- 7      #state column
-        hospcol <- 2     # hospital name column
+        hospName <- 2     # hospital name column
         # set column number of valid function argument as outcol for 
         # subsetting the outcome data
         if(outcome == "heart attack"){
@@ -57,7 +57,8 @@ best <- function(state, outcome) {
 min_value <- min(as.numeric(hosp_list[,outcol]), na.rm = TRUE)
 
 hospital <- hosp_list[which(hosp_list[,outcol] == min_value), ]
-hospital[hospcol]
+output <- vector(mode ="character", length = 1)
+output <- hospital[[hospName]]
 
 ## rate
 }
