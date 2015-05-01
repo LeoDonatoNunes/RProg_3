@@ -7,13 +7,14 @@ rankhospital <- function(state, outcome, num = "best"){
 ## Sample variable for testing
         #state <- "TX"
         #state <- "SC"
-        
+        #state <- "NC"
         #outcome <- "heart attack"
         #outcome <- "heart failure"
         #outcome <- "pneumonia"
         #num <- 5
         #num <- "worst"
-        
+        #num <- "best"
+
 ## Read outcome data
         outcome_data <- read.csv("outcome-of-care-measures.csv", na.strings = "Not Available", colClasses = "character")
         
@@ -67,24 +68,26 @@ data <- data[order(data$Rate, data$Hospital.Name), ]
 Rank <- as.numeric(1:length(Rate))
 data <-cbind(data, Rank)
 ## Set values for best and worst arguments
+output <- vector(mode = "character", length = 1)
+
         if(num == "best"){
                 num <- 1     
                 hospRank <- data[which(data$Rank == num), ]
                 ## Output Hospital.Name
-                output <- as.character(hospRank[1])
+                output <- as.character(hospRank[[1]])
         }
         if(num == "worst"){
                 num <- length(Rate)   
                 hospRank <- data[which(data$Rank == num), ]
                 ## Output Hospital.Name
-                output <- as.character(hospRank[1])
+                output <- as.character(hospRank[[1]])
         }
 
 ## Find Hospital.Name for Rank Argument (num)
         if(num <= length(Rate)){
                 hospRank <- data[which(data$Rank == num), ]
                 ## Output Hospital.Name
-                output <- as.character(hospRank[1])     
+                output <- as.character(hospRank[[1]])    
         }
         if(num > length(Rate)){
                 output <- as.character("NA")

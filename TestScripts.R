@@ -2,6 +2,7 @@
 rankhospital("MN", "heart attack", 5000)
 rankhospital("MD", "heart attack", "worst")
 rankhospital("TX", "heart failure", 4)
+rankhospital("NC", "heart attack", "worst")
 
 ### Test Scripts for Best
 source("http://d396qusza40orc.cloudfront.net/rprog%2Fscripts%2Fsubmitscript3.R")
