@@ -71,23 +71,23 @@ data <-cbind(data, Rank)
                 num <- 1     
                 hospRank <- data[which(data$Rank == num), ]
                 ## Output Hospital.Name
-                output <- hospRank[1] 
+                output <- as.character(hospRank[1])
         }
         if(num == "worst"){
                 num <- length(Rate)   
                 hospRank <- data[which(data$Rank == num), ]
                 ## Output Hospital.Name
-                output <- hospRank[1] 
+                output <- as.character(hospRank[1])
         }
 
 ## Find Hospital.Name for Rank Argument (num)
         if(num <= length(Rate)){
                 hospRank <- data[which(data$Rank == num), ]
                 ## Output Hospital.Name
-                output <- hospRank[1]       
+                output <- as.character(hospRank[1])     
         }
         if(num > length(Rate)){
-                output <- "NA"
+                output <- as.character("NA")
         }
 output
 }
