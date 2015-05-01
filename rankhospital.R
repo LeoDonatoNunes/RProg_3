@@ -6,12 +6,12 @@
 rankhospital <- function(state, outcome, num = "best"){
 ## Sample variable for testing
         #state <- "TX"
-        state <- "SC"
+        #state <- "SC"
         
         #outcome <- "heart attack"
         #outcome <- "heart failure"
-        outcome <- "pneumonia"
-        num <- 5
+        #outcome <- "pneumonia"
+        #num <- 5
         #num <- "worst"
         
 ## Read outcome data
@@ -61,23 +61,33 @@ Hospital.Name <- as.vector(hosp_list_clean[[hospNmCol]])
 data <- as.data.frame(cbind(Hospital.Name),"name")
 Rate <- as.numeric(hosp_list_clean[[outcol]])
 data <- cbind(data, Rate)
-# working ### data <- data[do.call(order,as.data.frame(data[,2])),]
-
-# this works ### data <- data[do.call(order,as.data.frame(data$Rate)),]
+##  sort the data 
 data <- data[order(data$Rate, data$Hospital.Name), ]
-# this works ### data <- data[do.call(order,as.data.frame(data$Hospital.Name)),]
-# this does not work ## data <- data[do.call(order,as.data.frame(data$Rate),as.data.frame(data$Hospital.Name)),]
-# CustomData[do.call(order, as.list(CustomData)),]
+## add a Rank column
+Rank <- as.numeric(1:length(Rate))
+data <-cbind(data, Rank)
+## Set values for best and worst arguments
+        if(num == "best"){
+                num <- 1     
+                hospRank <- data[which(data$Rank == num), ]
+                ## Output Hospital.Name
+                output <- hospRank[1] 
+        }
+        if(num == "worst"){
+                num <- length(Rate)   
+                hospRank <- data[which(data$Rank == num), ]
+                ## Output Hospital.Name
+                output <- hospRank[1] 
+        }
 
-#CustomData <- data
-#CustomData_sorted <- CustomData[do.call(order, as.list(CustomData)),]
-#head(CustomData_sorted)
-
-#Rank <- as.numeric(1:length(Rate))
-#data <-cbind(data, Rank)
-
-head(data)
-tail(data)
-## 30-day death rate    
-
+## Find Hospital.Name for Rank Argument (num)
+        if(num <= length(Rate)){
+                hospRank <- data[which(data$Rank == num), ]
+                ## Output Hospital.Name
+                output <- hospRank[1]       
+        }
+        if(num > length(Rate)){
+                output <- "NA"
+        }
+output
 }
